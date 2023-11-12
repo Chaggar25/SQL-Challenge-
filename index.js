@@ -171,3 +171,30 @@ function userPrompt() {
         type: "list",
         name: "select",
         message: "What would you like to do?",
+        choices: [
+            "View All Departments",
+            "View All Roles",
+            "View All Employees",
+            "Add a Department",
+            "Add a Role",
+            "Add an Employee",
+            "Update an Employee Role",
+            new inquirer.Separator(),
+            "Quit"
+        ]
+    })
+    .then(async (res) => {
+        if (res.select === "Quit") {
+            console.log("Exiting application.");
+            process.exit();
+        } else {
+            await dbConnection(res.select);
+            userPrompt();
+        }
+    })
+    .catch((err) => {
+        console.error("An error occurred: ", err);
+    });
+}
+
+userPrompt();
