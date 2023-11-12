@@ -166,3 +166,8 @@ async function dbConnection(select) {
     }
 }
 
+function userPrompt() {
+    inquirer.prompt({
+        type: "list",
+        name: "select",
+        message: "What would you like to do?",
